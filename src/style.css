@@ -1,0 +1,47 @@
+.container {
+    -fx-padding: 40;
+    -fx-spacing: 20;
+    -fx-background-color: #f8f4fc;
+}
+
+.titulo {
+    -fx-font-size: 24px;
+    -fx-text-fill: #5e548e;
+    -fx-font-weight: bold;
+}
+
+.input {
+    -fx-pref-width: 250px;
+    -fx-font-size: 14px;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #c3aed6;
+    -fx-padding: 8;
+}
+
+.botao {
+    -fx-background-color: #9d4edd;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
+    -fx-transition: all 0.3s ease;
+}
+
+.botao:hover {
+    -fx-background-color: #7b2cbf;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.botao:pressed {
+    -fx-background-color: #5a189a;
+    -fx-translate-y: 1;
+}
+
+.resultado {
+    -fx-font-size: 16px;
+    -fx-text-fill: #4a4e69;
+}
