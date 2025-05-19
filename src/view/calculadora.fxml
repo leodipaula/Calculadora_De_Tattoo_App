@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.collections.ObservableList?>
+<?import java.lang.String?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.CalculadoraController">
+    <VBox fx:id="mainContainer" spacing="20.0" styleClass="container">
+        <padding>
+            <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+        </padding>
+
+        <!-- Emoji Face -->
+        <VBox styleClass="emoji-container" alignment="CENTER">
+            <HBox alignment="CENTER" spacing="40">
+                <Circle fx:id="leftEye" radius="20" styleClass="emoji-eye"/>
+                <Circle fx:id="rightEye" radius="20" styleClass="emoji-eye"/>
+            </HBox>
+            <Arc fx:id="mouth" radiusX="30" radiusY="20" startAngle="0" length="180" type="ROUND" styleClass="emoji-mouth"/>
+        </VBox>
+
+        <!-- Indicador de progresso -->
+        <HBox styleClass="progress-container" alignment="CENTER">
+            <Circle fx:id="step1" radius="5" styleClass="progress-dot,active"/>
+            <Line startX="0" startY="0" endX="30" endY="0" styleClass="progress-line"/>
+            <Circle fx:id="step2" radius="5" styleClass="progress-dot"/>
+            <Line startX="0" startY="0" endX="30" endY="0" styleClass="progress-line"/>
+            <Circle fx:id="step3" radius="5" styleClass="progress-dot"/>
+        </HBox>
+
+        <!-- Container para as etapas -->
+        <StackPane fx:id="stepsContainer">
+            <!-- Etapa 1: Informações -->
+            <VBox fx:id="step1Content" visible="true" spacing="15" styleClass="form-container">
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Tamanho (cm²):" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <TextField fx:id="inputTamanho" promptText="Ex: 100" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Horas estimadas:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <TextField fx:id="inputHoras" promptText="Ex: 2.5" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                </GridPane>
+                <Button text="Próximo" onAction="#nextStep" styleClass="botao-next"/>
+            </VBox>
+
+            <!-- Etapa 2: Detalhes -->
+            <VBox fx:id="step2Content" visible="false" spacing="15" styleClass="form-container">
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Tinta colorida?" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <CheckBox fx:id="checkColorida" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Nível de detalhe:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <ChoiceBox fx:id="choiceDetalhe" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="simples"/>
+                                <String fx:value="médio"/>
+                                <String fx:value="detalhado"/>
+                            </FXCollections>
+                        </items>
+                    </ChoiceBox>
+                </GridPane>
+                <HBox spacing="10" alignment="CENTER">
+                    <Button text="Voltar" onAction="#previousStep" styleClass="botao-prev"/>
+                    <Button text="Próximo" onAction="#nextStep" styleClass="botao-next"/>
+                </HBox>
+            </VBox>
+
+            <!-- Etapa 3: Materiais -->
+            <VBox fx:id="step3Content" visible="false" spacing="15" styleClass="form-container">
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Agulhas Round Liner (RL):" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <TextField fx:id="inputRL" promptText="Quantidade" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Agulhas Round Shader (RS):" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <TextField fx:id="inputRS" promptText="Quantidade" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                    <Label text="Agulhas Magnum (MG):" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <TextField fx:id="inputMG" promptText="Quantidade" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                    <Label text="Stencil (ml):" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                    <TextField fx:id="inputStencil" promptText="Ex: 5" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                    <Label text="Papel Toalha:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                    <TextField fx:id="inputPapelToalha" promptText="Quantidade" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                    <Label text="Tinta (ml):" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                    <TextField fx:id="inputMlTinta" promptText="Ex: 10" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                </GridPane>
+                <HBox spacing="10" alignment="CENTER">
+                    <Button text="Voltar" onAction="#previousStep" styleClass="botao-prev"/>
+                    <Button text="Calcular" onAction="#calcularPreco" styleClass="botao-calculate"/>
+                </HBox>
+            </VBox>
+
+            <!-- Resultado -->
+            <VBox fx:id="resultContent" visible="false" spacing="15" alignment="CENTER">
+                <Label fx:id="labelResultado" styleClass="resultado"/>
+                <Button text="Nova Calculadora" onAction="#resetForm" styleClass="botao-reset"/>
+            </VBox>
+        </StackPane>
+    </VBox>
+</StackPane>

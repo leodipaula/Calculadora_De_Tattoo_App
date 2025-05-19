@@ -1,3 +1,5 @@
+package application;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,10 +10,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("calculadora.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/calculadora.fxml"));
 
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm());
 
         stage.setTitle("Calculadora de Tatuagem");
         stage.setScene(scene);
